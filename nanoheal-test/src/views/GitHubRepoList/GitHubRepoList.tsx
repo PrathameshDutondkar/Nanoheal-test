@@ -19,7 +19,7 @@ interface Repo {
 const GitHubRepoList = () => {
   const [repos, setRepos] = useState<Repo[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [total, setTotal] = useState<number>(0);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,7 +45,6 @@ const GitHubRepoList = () => {
       const data = await response.json();
 
       setRepos(data.items);
-      setTotal(data.total_count);
     } catch (error) {
       console.error("Error fetching data:", error);
       setError("Something went wrong. Please try again later.");
@@ -80,7 +79,7 @@ const GitHubRepoList = () => {
           <Pagination
             current={page}
             onChange={onPageChange}
-            total={total}
+            total={1000}
             pageSize={30}
             showSizeChanger={false}
             className="pagination"
