@@ -1,4 +1,3 @@
-import { Card } from "antd";
 import React from "react";
 import "./repocard.scss";
 import { AiFillStar, AiOutlineIssuesClose } from "react-icons/ai";
@@ -18,7 +17,6 @@ const RepoCard = ({ repo }) => {
     height: "28px",
   };
 
-  
   const createdDate = new Date(repo.created_at);
   const currentDate = new Date();
   const timeDifference = currentDate - createdDate;
@@ -26,33 +24,37 @@ const RepoCard = ({ repo }) => {
 
   return (
     <div className="repo-container">
-      <Card className="repo-card">
-        <div className="image-container">
+      <div className="repo-card">
+        <span className="image-container">
           <img
             src={repo.owner.avatar_url}
             alt={repo.owner.login}
             className="repo-image"
           />
-        </div>
-        <div className="repo-name">{repo.name}</div>
-        <div className="repo-description">{repo.description}</div>
-        <div className="repo-star">
-          <span className="repo-star-icon">
-            <AiFillStar style={starIconStyle} />
+        </span>
+        <span className="repo-details-container">
+          {" "}
+          <div className="repo-name">{repo.name}</div>
+          <div className="repo-description">{repo.description}</div>
+          <span className="repo-details">
+            <span className="repo-star">
+              <span className="repo-star-icon">
+                <AiFillStar style={starIconStyle} />
+              </span>
+              <span className="repo-star-count">{repo.stargazers_count}</span>
+            </span>
+            <span className="repo-issue">
+              <span>
+                <AiOutlineIssuesClose style={issueIconStyle} />
+              </span>
+              <span className="repo-issue-count">{repo.open_issues_count}</span>
+            </span>
+            <span className="repo-username">
+              Submitted &nbsp;<span className="no-of-days">{daysAgo}  days </span>&nbsp; ago by &nbsp;<span className="no-of-days"> {repo.owner.login}</span>
+            </span>
           </span>
-          <span className="repo-star-count">{repo.stargazers_count}</span>
-        </div>
-        <div className="repo-issue">
-          <span>
-            <AiOutlineIssuesClose style={issueIconStyle} />
-          </span>
-          <span className="repo-issue-count">{repo.open_issues_count}</span>
-        </div>
-       
-        <div className="repo-username">
-          Submitted {daysAgo} days ago by {repo.owner.login}
-        </div>
-      </Card>
+        </span>
+      </div>
     </div>
   );
 };

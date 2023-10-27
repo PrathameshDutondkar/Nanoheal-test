@@ -1,62 +1,83 @@
 .repo-container {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   margin: 1rem;
-
   .repo-card {
-    position: relative;
     display: flex;
-    justify-content: center;
+    width: 100rem;
+    border-radius: 8px;
+    padding: 2rem;
+    gap: 3rem;
     box-shadow: 0px 4px 31px 0px #a2a1a140;
-    width: 34rem;
     cursor: pointer;
   }
-  .ant-card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .repo-card:hover {
+    transform: scale(1.001  );
+    box-shadow: 0px 6px 40px 0px #a2a1a1;
   }
+  .repo-image {
+    width: 15rem;
+    height: 15rem;
+  }
+
   .repo-name {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
+    display: flex;
+    margin-bottom: 0.8rem;
+  }
+  .repo-description {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  .repo-details-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .repo-details {
+    display: flex;
+
+    gap: 2rem;
   }
   .repo-star {
     display: flex;
-    justify-content: center;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.6rem;
   }
-  .repo-description{
-    font-family: "Montserrat", sans-serif;
+
+  .repo-star-count {
+    display: flex;
+    align-items: center;
     font-size: 1.1rem;
-  }
-  // .repo-star-icon {
-  //   // color: "gold";
-  //   // width: "28px";
-  //   // height: "28px";
-  // }
-  .repo-star-count{
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
     font-weight: 600;
   }
-  .repo-issue{
+  .repo-issue {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
   }
-  .repo-issue-count{
+  .repo-issue-count {
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
   }
-  .repo-image {
-    width: 22rem;
-    height: 22rem;
+
+  .repo-username {
+    display: flex;
+    font-size: 1.1rem;
+    align-items: center;
+    font-weight: 500;
+
   }
-  .repo-username{
-    font-size: 1rem;
-    
+  .no-of-days{
+    font-weight: 600;
   }
 }
