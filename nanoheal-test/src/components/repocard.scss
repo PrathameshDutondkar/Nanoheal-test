@@ -1,0 +1,62 @@
+.repo-container {
+  display: inline-flex;
+  margin: 1rem;
+
+  .repo-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 4px 31px 0px #a2a1a140;
+    width: 34rem;
+    cursor: pointer;
+  }
+  .ant-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .repo-name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  .repo-star {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .repo-description{
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+  }
+  // .repo-star-icon {
+  //   // color: "gold";
+  //   // width: "28px";
+  //   // height: "28px";
+  // }
+  .repo-star-count{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .repo-issue{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .repo-issue-count{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .repo-image {
+    width: 22rem;
+    height: 22rem;
+  }
+  .repo-username{
+    font-size: 1rem;
+    
+  }
+}
