@@ -5,14 +5,15 @@
   .repo-card {
     display: flex;
     width: 100rem;
-    border-radius: 8px;
+    border-radius: 0.6rem;
     padding: 2rem;
     gap: 3rem;
     box-shadow: 0px 4px 31px 0px #a2a1a140;
     cursor: pointer;
+   
   }
   .repo-card:hover {
-    transform: scale(1.001  );
+    transform: scale(1.001);
     box-shadow: 0px 6px 40px 0px #a2a1a1;
   }
   .repo-image {
@@ -35,7 +36,7 @@
     margin-bottom: 2rem;
     font-weight: 500;
   }
-  .repo-details-container{
+  .repo-details-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,9 +76,43 @@
     font-size: 1.1rem;
     align-items: center;
     font-weight: 500;
-
   }
-  .no-of-days{
+  .no-of-days {
     font-weight: 600;
+  }
+}
+@media (max-width: 991px) {
+  .repo-container {
+    margin: 2rem;
+    .repo-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .repo-name {
+      justify-content: center;
+    }
+    .repo-details {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+  @media (max-width: 540px) {
+    .repo-container {
+      .repo-card {
+        gap: 1rem;
+      }
+      .repo-name {
+        font-size: 1.2rem;
+      }
+      .repo-description {
+        font-size: 1rem;
+      }
+      .repo-username {
+        font-size: 0.7rem;
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RepoList from "../../components/RepoList";
 import { Pagination, Spin, Alert } from "antd";
+import "./githubrepoList.scss"
 
 interface Repo {
   id: number;
@@ -66,7 +67,10 @@ const GitHubRepoList = () => {
 
   return (
     <div className="App">
-      <h1>Most Starred GitHub Repos that were created in the last 30 days.</h1>
+      <div className="repo-title">
+        Most Starred GitHub Repos that were created in the last 30 days
+      </div>
+
       {error && <Alert message={error} type="error" />}
       {isLoading && <Spin size="large" />}
       {noReposFound && <div>No GitHub repositories found.</div>}
