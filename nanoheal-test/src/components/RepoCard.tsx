@@ -2,7 +2,19 @@ import React from "react";
 import "./repocard.scss";
 import { AiFillStar, AiOutlineIssuesClose } from "react-icons/ai";
 
-const RepoCard = ({ repo }) => {
+interface Repo {
+  name: string;
+  description: string;
+  stargazers_count: number;
+  open_issues_count: number;
+  created_at: string;
+  owner: {
+    login: string;
+    avatar_url?: string; 
+  };
+}
+
+const RepoCard = ({ repo }: { repo: Repo }) => {
   console.log("data", repo);
 
   const starIconStyle = {
@@ -19,7 +31,7 @@ const RepoCard = ({ repo }) => {
 
   const createdDate = new Date(repo.created_at);
   const currentDate = new Date();
-  const timeDifference = currentDate - createdDate;
+  const timeDifference = currentDate.getTime() - createdDate.getTime();
   const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   return (
@@ -27,7 +39,7 @@ const RepoCard = ({ repo }) => {
       <div className="repo-card">
         <span className="image-container">
           <img
-            src={repo.owner.avatar_url}
+            src={repo.owner.avatar_url || "fallback-image-url.jpg"} // Use a fallback image URL
             alt={repo.owner.login}
             className="repo-image"
           />
