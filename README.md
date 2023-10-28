@@ -4,7 +4,7 @@
 ## `Running Locally`
 git clone this repo\
 cd Nanoheal-test\
-cd nanoheal-test\
+cd nanoheal-test
 
 
 npm install\
@@ -16,5 +16,5 @@ Javascript Library: ReactJs\
 CSS FrameWork:Antd ,SCSS\
 State Management:Redux Toolkit\
 
-##`Live Project`
+## `Live Project`
 https://nanoheal-test.netlify.app/
