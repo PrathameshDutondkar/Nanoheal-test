@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import RepoList from "../../components/RepoList";
 import { Pagination, Spin, Alert } from "antd";
-import { fetchGitHubRepos } from "../../store/githubRepoSlice";
+import { fetchGitHubRepos } from "../../store/GithubRepoSlice";
 import "./githubrepoList.scss";
 import { AppDispatch } from "../../store/store";
 
@@ -29,9 +28,11 @@ interface Repo {
 }
 
 const GitHubRepoList = () => {
-  const { repos, loading, error } = useSelector((state: RootState) => state.githubRepos);
+  const { repos, loading, error } = useSelector(
+    (state: RootState) => state.githubRepos
+  );
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const dispatch = useDispatch<AppDispatch>();
   const page: number = 1;
 
@@ -53,10 +54,10 @@ const GitHubRepoList = () => {
 
       {error && <Alert message={error} type="error" />}
       {isLoading && <Spin size="large" />}
-      {noReposFound && <div>No GitHub repositories found.</div>}
+      {noReposFound && <div>No GitHub repositories found</div>}
       {!error && !isLoading && !noReposFound && (
         <>
-          <RepoList/>
+          <RepoList />
           <Pagination
             current={currentPage}
             onChange={onPageChange}

@@ -17,13 +17,13 @@ interface Repo {
 
 const RepoCard = ({ repo }: { repo: Repo }) => {
   const starIconStyle = {
-    color: "gold",
+    color: "#FFD700",
     width: "28px",
     height: "28px",
   };
 
   const issueIconStyle = {
-    color: "red",
+    color: "#FF0000",
     width: "28px",
     height: "28px",
   };

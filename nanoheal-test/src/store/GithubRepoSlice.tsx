@@ -11,7 +11,7 @@ export interface GitHubReposState {
   error: any;
 }
 
-export const fetchGitHubRepos = createAsyncThunk<GitHubRepo[],number>(
+export const fetchGitHubRepos = createAsyncThunk<GitHubRepo[], number>(
   "githubRepos/fetchRepos",
   async (page: number) => {
     const today = new Date();
