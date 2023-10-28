@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux'; // Import useSelector
 import RepoCard from './RepoCard';
 
 interface Repo {
@@ -12,14 +13,19 @@ interface Repo {
     login: string;
     avatar_url?: string;
   };
-  
+}
+interface RootState {
+  githubRepos: {
+    repos: Repo[];
+    
+  };
 }
 
-interface RepoListProps {
-  repos: Repo[];
-}
 
-const RepoList: React.FC<RepoListProps> = ({ repos }) => {
+
+const RepoList = () => {
+  const repos = useSelector((state: RootState) => state.githubRepos.repos); 
+
   return (
     <div className="repo-list">
       {repos?.map((repo) => (
@@ -30,3 +36,5 @@ const RepoList: React.FC<RepoListProps> = ({ repos }) => {
 };
 
 export default RepoList;
+
+

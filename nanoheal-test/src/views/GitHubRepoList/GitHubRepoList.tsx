@@ -1,7 +1,19 @@
+
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import RepoList from "../../components/RepoList";
 import { Pagination, Spin, Alert } from "antd";
-import "./githubrepoList.scss"
+import { fetchGitHubRepos } from "../../store/githubRepoSlice";
+import "./githubrepoList.scss";
+import { AppDispatch } from "../../store/store";
+
+interface RootState {
+  githubRepos: {
+    repos: Repo[];
+    loading: boolean;
+    error: string | null;
+  };
+}
 
 interface Repo {
   id: number;
@@ -12,72 +24,41 @@ interface Repo {
   created_at: string;
   owner: {
     login: string;
-    avatar_url?: string;
+    avatar_url: string;
   };
 }
 
 const GitHubRepoList = () => {
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const [page, setPage] = useState<number>(1);
-
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchGitHubRepos = async (page: number) => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const today = new Date();
-      const thirtyDaysAgo = new Date(today);
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
-      const thirtyDaysAgoDate = thirtyDaysAgo.toISOString().split("T")[0];
-
-      const response = await fetch(
-        `https://api.github.com/search/repositories?q=created:>${thirtyDaysAgoDate}&sort=stars&order=desc&page=${page}`
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      setRepos(data.items);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError("Something went wrong. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { repos, loading, error } = useSelector((state: RootState) => state.githubRepos);
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const dispatch = useDispatch<AppDispatch>();
+  const page: number = 1;
 
   useEffect(() => {
-    fetchGitHubRepos(page);
-  }, [page]);
+    dispatch(fetchGitHubRepos(page));
+  }, [dispatch, page]);
 
   const onPageChange = (pageNumber: number) => {
-    setPage(pageNumber);
+    setCurrentPage(pageNumber);
+    dispatch(fetchGitHubRepos(pageNumber));
   };
 
-  const isLoading = loading || error;
-  const noReposFound = !isLoading && repos.length === 0;
+  const isLoading: boolean = loading || error !== null;
+  const noReposFound: boolean = !isLoading && repos.length === 0;
 
   return (
     <div className="App">
-      <div className="repo-title">
-       Trending Repos
-      </div>
+      <div className="repo-title">Trending Repos</div>
 
       {error && <Alert message={error} type="error" />}
       {isLoading && <Spin size="large" />}
       {noReposFound && <div>No GitHub repositories found.</div>}
       {!error && !isLoading && !noReposFound && (
         <>
-          <RepoList repos={repos} />
+          <RepoList/>
           <Pagination
-            current={page}
+            current={currentPage}
             onChange={onPageChange}
             total={1000}
             pageSize={30}
