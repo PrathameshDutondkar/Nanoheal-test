@@ -12,7 +12,7 @@ interface Repo {
     login: string;
     avatar_url?: string;
   };
-  // Include any other properties that 'RepoCard' expects
+  
 }
 
 interface RepoListProps {

@@ -1,7 +1,7 @@
 import React from "react";
 import "./repocard.scss";
 import { AiFillStar, AiOutlineIssuesClose } from "react-icons/ai";
-
+import fallbackImage from "../assets/fallback-image.png"
 interface Repo {
   name: string;
   description: string;
@@ -39,7 +39,7 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
       <div className="repo-card">
         <span className="image-container">
           <img
-            src={repo.owner.avatar_url || "fallback-image-url.jpg"} // Use a fallback image URL
+            src={repo.owner.avatar_url || fallbackImage} 
             alt={repo.owner.login}
             className="repo-image"
           />

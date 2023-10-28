@@ -67,7 +67,7 @@ const GitHubRepoList = () => {
   return (
     <div className="App">
       <div className="repo-title">
-        Most Starred GitHub Repos that were created in the last 30 days
+       Trending Repos
       </div>
 
       {error && <Alert message={error} type="error" />}
